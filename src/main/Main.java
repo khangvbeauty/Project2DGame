@@ -22,6 +22,6 @@ public class Main {
       gamePanel.startGameThread();
       
       //nếu ta
-//alo alolao
+//vanne
     }
 }
