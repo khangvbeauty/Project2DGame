@@ -19,6 +19,9 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	final int screenWidth = tileSize * maxScreenCol; // 768px
 	final int screenHeight = tileSize * maxScreenRow; // 576px
 	
+	// FPS
+	int FPS = 60;
+	 
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; //Luồng lặp 1 quy trình
 	
@@ -33,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);
-		this.setFocusCycleRoot(true); //Nhận đầu vào chính
+		this.setFocusable(true); //Nhận đầu vào chính
 	}
 	
 	public void startGameThread() { // Khởi tạo game thread
@@ -43,10 +46,30 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	@Override
 	public void run() { // Tạo loop game
 		while (gameThread != null) {
+			
+			double drawInterval = 1000000000/FPS; //0.1666 giây
+			double nextDrawTime = System.nanoTime() + drawInterval;
+			
 			// 1 UPDATE: cập nhật thông tin như là vị trí nhân vật
 			update();
 			// 2 DRAW: vẽ màn hình với các thông tin cập nhật
 			repaint();
+						
+			try { //Phương thức sleep. Có cách khác Phương thức delta 
+				double remainingTime = nextDrawTime - System.nanoTime();
+				remainingTime = remainingTime/1000000;
+				
+				if (remainingTime < 0) {
+					remainingTime = 0;
+				}
+				
+				Thread.sleep((long) remainingTime);
+				
+				nextDrawTime += drawInterval;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
