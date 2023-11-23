@@ -7,13 +7,15 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import entity.Player;
+
 public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa JPanel, lớp con có nhiều chức năng được bổ sung
 
 	// Cài đặt màn hình
 	final int originalTileSize = 16; // tiêu chuẩn 16x16 nhân vật, NPCs, ô bản đồ
 	final int scale = 3; //Tỉ lệ
 	
-	final int tileSize = originalTileSize * scale; // 48x48 thực tế
+	public final int tileSize = originalTileSize * scale; // 48x48 thực tế
 	final int maxScreenCol = 16; //16 cột
 	final int maxScreenRow = 12; //12 hàng
 	final int screenWidth = tileSize * maxScreenCol; // 768px
@@ -24,6 +26,8 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	 
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; //Luồng lặp 1 quy trình
+	
+	Player player = new Player(this,keyH);
 	
 	//Tạo mặc định vị trí người chơi
 	int playerX = 100;
@@ -75,18 +79,8 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	}
 	public void update() {
 		
-		if(keyH.upPressed == true) {
-			playerY -= playerSpeed;
-		}
-		else if(keyH.downPressed == true) {
-			playerY += playerSpeed;
-		}
-		else if(keyH.leftPressed == true) {
-			playerX -= playerSpeed;
-		}
-		else if(keyH.rightPressed == true) {
-			playerX += playerSpeed;
-		}
+		player.update();
+		
 	}
 	public void paintComponent(Graphics g) { // Phương thức tiêu chuẩn vẽ mọi thứ JPanel, Graphics có nhiều hàm vẽ
 		
@@ -94,9 +88,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		
 		Graphics2D g2 = (Graphics2D)g; // Lớp kế thừa lớp Graphics
 		
-		g2.setColor(Color.white);
-		
-		g2.fillRect(playerX, playerY, tileSize, tileSize);//Phương thức vẽ 1 HCN
+		player.draw();
 		
 		g2.dispose(); //giải phóng bộ nhớ
 	}
