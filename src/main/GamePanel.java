@@ -88,7 +88,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		
 		Graphics2D g2 = (Graphics2D)g; // Lớp kế thừa lớp Graphics
 		
-		player.draw();
+		player.draw(g2);
 		
 		g2.dispose(); //giải phóng bộ nhớ
 	}
