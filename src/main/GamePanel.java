@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa JPanel, lớp con có nhiều chức năng được bổ sung
 
@@ -16,23 +17,20 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	final int scale = 3; //Tỉ lệ
 	
 	public final int tileSize = originalTileSize * scale; // 48x48 thực tế
-	final int maxScreenCol = 16; //16 cột
-	final int maxScreenRow = 12; //12 hàng
-	final int screenWidth = tileSize * maxScreenCol; // 768px
-	final int screenHeight = tileSize * maxScreenRow; // 576px
+	public final int maxScreenCol = 16; //16 cột
+	public final int maxScreenRow = 12; //12 hàng
+	public final int screenWidth = tileSize * maxScreenCol; // 768px
+	public final int screenHeight = tileSize * maxScreenRow; // 576px
 	
 	// FPS
 	int FPS = 60;
 	 
+	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; //Luồng lặp 1 quy trình
 	
 	Player player = new Player(this,keyH);
 	
-	//Tạo mặc định vị trí người chơi
-	int playerX = 100;
-	int playerY = 100;
-	int playerSpeed = 4;
 	
 	public GamePanel() {
 		
@@ -87,6 +85,8 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		super.paintComponent(g); // super là lớp cha của một lớp
 		
 		Graphics2D g2 = (Graphics2D)g; // Lớp kế thừa lớp Graphics
+		
+		tileM.draw(g2);
 		
 		player.draw(g2);
 		
