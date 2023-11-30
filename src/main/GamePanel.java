@@ -22,6 +22,15 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	public final int screenWidth = tileSize * maxScreenCol; // 768px
 	public final int screenHeight = tileSize * maxScreenRow; // 576px
 	
+	//World settings
+	public final int maxWorldCol = 50;
+	public final int maxWorldRow = 50;
+	public final int worldWidth = tileSize * maxScreenCol;
+	public final int worldHeight = tileSize * maxScreenRow;
+
+
+
+	
 	// FPS
 	int FPS = 60;
 	 
@@ -29,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; //Luồng lặp 1 quy trình
 	
-	Player player = new Player(this,keyH);
+	public Player player = new Player(this,keyH);
 	
 	
 	public GamePanel() {
