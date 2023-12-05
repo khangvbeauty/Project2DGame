@@ -38,7 +38,12 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; //Luồng lặp 1 quy trình
+<<<<<<< HEAD
 	public AssetSetter aSetter = new AssetSetter(this);
+=======
+	public CollisionChecker cChecker = new CollisionChecker(this);
+	
+>>>>>>> e38ac86ed930bf8e008bad46d4eea545b21836f5
 	public Player player = new Player(this,keyH);
 	public SuperObject obj[]=new SuperObject[10];
 	
