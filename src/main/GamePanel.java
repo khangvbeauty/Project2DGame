@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; //Luồng lặp 1 quy trình
+	public CollisionChecker cChecker = new CollisionChecker(this);
 	
 	public Player player = new Player(this,keyH);
 	
