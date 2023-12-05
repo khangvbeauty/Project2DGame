@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import object.SuperObject;
 import tile.TileManager;
 
 public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa JPanel, lớp con có nhiều chức năng được bổ sung
@@ -37,9 +38,9 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; //Luồng lặp 1 quy trình
-	
+	public AssetSetter aSetter = new AssetSetter(this);
 	public Player player = new Player(this,keyH);
-	
+	public SuperObject obj[]=new SuperObject[10];
 	
 	public GamePanel() {
 		
@@ -48,6 +49,10 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);
 		this.setFocusable(true); //Nhận đầu vào chính
+	}
+	
+	public void setupGame() {
+		aSetter.setObject();
 	}
 	
 	public void startGameThread() { // Khởi tạo game thread
@@ -94,9 +99,17 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		super.paintComponent(g); // super là lớp cha của một lớp
 		
 		Graphics2D g2 = (Graphics2D)g; // Lớp kế thừa lớp Graphics
-		
+		//TILE
 		tileM.draw(g2);
 		
+		//OBJECT
+		for(int i=0; i<obj.length;i++) {
+			if (obj[i]!= null) {
+				obj[i].draw(g2,  this);
+			}
+		}
+		
+		//PLAYER
 		player.draw(g2);
 		
 		g2.dispose(); //giải phóng bộ nhớ

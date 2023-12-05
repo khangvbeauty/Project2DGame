@@ -19,6 +19,7 @@ public class Main {
       window.setLocationRelativeTo(null); //Cửa sổ trung tâm
       window.setVisible(true);
       
+      gamePanel.setupGame();
       gamePanel.startGameThread();
       
       //nếu ta
