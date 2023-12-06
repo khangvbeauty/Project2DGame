@@ -14,6 +14,7 @@ public class Entity {
 	public int spriteNum = 1;
 	
 	public Rectangle solidArea; //Lớp đại diện HCN
+	public int solidAreaDefaultX, solidAreaDefaultY;
 	public boolean collisionOn = false;
 	
 	

@@ -18,6 +18,7 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 	
 	public final int screenX;
 	public final int screenY;
+	int hasKey = 0;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		
@@ -30,6 +31,8 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 		solidArea = new Rectangle(); //tạo phần rắn va chạm
 		solidArea.x = 8;
 		solidArea.y  =16;
+		solidAreaDefaultX = solidArea.x;
+		solidAreaDefaultY = solidArea.y;
 		solidArea.width = 32;
 		solidArea.height = 32;
 		
@@ -83,6 +86,10 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 			collisionOn = false;
 			gp.cChecker.checkTile(this);
 			
+			//Kiểm tra va chạm đối tượng (Object)
+			int objIndex = gp.cChecker.checkObject(this,true);
+			pickUpObject(objIndex);
+			
 			// Nếu không chạm, player di chuyển
 			if(collisionOn == false) {
 				
@@ -114,6 +121,27 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 			}
 		}
 		
+	}
+	public void pickUpObject(int i) {
+
+		    if (i >= 0 && i < gp.obj.length) {
+		        String objectName = gp.obj[i].name;
+		        
+		        switch(objectName) {
+		        case "Key":
+		        	hasKey++;
+		        	gp.obj[i] = null;
+		        	System.out.println("Key: "+hasKey);
+		        	break;
+		        case "Door":
+		        	if(hasKey > 0) {
+		        		gp.obj[i] = null;
+		        		hasKey--;
+		        	}
+		        	System.out.println("Key: "+hasKey);
+		        	break;     
+		        }
+		    }
 	}
 	public void draw(Graphics2D g2) {
 		
