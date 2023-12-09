@@ -139,7 +139,12 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 		        		hasKey--;
 		        	}
 		        	System.out.println("Key: "+hasKey);
-		        	break;     
+		        	break;   
+		        case "Boots":
+		        	speed += 2;
+		        	gp.obj[i]=null;
+		        	break;
+		        	
 		        }
 		    }
 	}

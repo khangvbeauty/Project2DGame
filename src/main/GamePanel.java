@@ -26,21 +26,19 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	//World settings
 	public final int maxWorldCol = 50;
 	public final int maxWorldRow = 50;
-	public final int worldWidth = tileSize * maxScreenCol;
-	public final int worldHeight = tileSize * maxScreenRow;
-
-
-
 	
 	// FPS
 	int FPS = 60;
 	 
+	//SYSTEM
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
-	Thread gameThread; //Luồng lặp 1 quy trình
+	Sound sound = new Sound();
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
+	Thread gameThread; //Luồng lặp 1 quy trình
 	
+	//ENTITY AND OBJECT
 	public Player player = new Player(this,keyH);
 	public SuperObject obj[]= new SuperObject[10];
 	
@@ -55,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	
 	public void setupGame() {
 		aSetter.setObject();
+		playMusic(0);
 	}
 	
 	public void startGameThread() { // Khởi tạo game thread
@@ -116,5 +115,16 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		
 		g2.dispose(); //giải phóng bộ nhớ
 	}
-	
+	public void playMusic(int i) {
+		sound.setFile(0);
+		sound.play();
+		sound.loop();
+	}
+	public void stopMusic() {
+		sound.stop();
+	}
+	public void playSE(int i) {
+		sound.setFile(i);
+		sound.play();
+	}
 }
