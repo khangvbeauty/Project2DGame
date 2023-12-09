@@ -37,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	Sound se = new Sound();
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
+	public UI ui  = new UI(this);
 	Thread gameThread; //Luồng lặp 1 quy trình
 	
 	//ENTITY AND OBJECT
@@ -113,6 +114,10 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		
 		//PLAYER
 		player.draw(g2);
+		
+		//UI
+		ui.draw(g2);
+		
 		
 		g2.dispose(); //giải phóng bộ nhớ
 	}

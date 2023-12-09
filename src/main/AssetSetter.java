@@ -1,6 +1,6 @@
 package main;
 
-import Objects.OBJ_Boot;
+import object.OBJ_Boot;
 import object.OBJ_Chest;
 import object.OBJ_Door;
 import object.OBJ_Key;
