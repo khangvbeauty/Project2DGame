@@ -33,7 +33,8 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	//SYSTEM
 	TileManager tileM = new TileManager(this);
 	KeyHandler keyH = new KeyHandler();
-	Sound sound = new Sound();
+	Sound music = new Sound();
+	Sound se = new Sound();
 	public AssetSetter aSetter = new AssetSetter(this);
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	Thread gameThread; //Luồng lặp 1 quy trình
@@ -116,15 +117,15 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		g2.dispose(); //giải phóng bộ nhớ
 	}
 	public void playMusic(int i) {
-		sound.setFile(0);
-		sound.play();
-		sound.loop();
+		music.setFile(0);
+		music.play();
+		music.loop();
 	}
 	public void stopMusic() {
-		sound.stop();
+		music.stop();
 	}
 	public void playSE(int i) {
-		sound.setFile(i);
-		sound.play();
+		se.setFile(i);
+		se.play();
 	}
 }
