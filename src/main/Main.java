@@ -22,7 +22,5 @@ public class Main {
       gamePanel.setupGame();
       gamePanel.startGameThread();
       
-      //nếu ta
-//vanne
     }
 }
