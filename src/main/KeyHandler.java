@@ -5,9 +5,14 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener { // KeyHandler đang triển khai giao diện KeyListener -  phương thức được sử dụng để lắng nghe các sự kiện bàn phím
 
+	GamePanel gp;
 	public boolean upPressed, downPressed, leftPressed, rightPressed;
 	//DEBUG
 	boolean checkDrawTime = false;
+	
+	public KeyHandler(GamePanel gp) {
+		this.gp = gp;
+	}
 	@Override
 	public void keyTyped(KeyEvent e) {		
 	}
@@ -33,6 +38,15 @@ public class KeyHandler implements KeyListener { // KeyHandler đang triển kha
 			rightPressed =  true;
 			
 		}
+		if(code == KeyEvent.VK_P) {  
+			if(gp.gameState == gp.playState) { //nếu đang play thì press P dừng lại,
+				gp.gameState = gp.pauseState;
+			}
+			else if (gp.gameState==gp.pauseState) { //đang pause thì press P để play
+				gp.gameState = gp.playState;
+				
+			}
+				}
 		
 		//DEBUG
 		if(code == KeyEvent.VK_T) {
