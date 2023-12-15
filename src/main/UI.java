@@ -93,7 +93,6 @@ public class UI {
 
 			// TIME
 			playTime += (double) 1 / 60;
-			g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize * 11, 65);
 
 			// MESSAGE
 			if (messageOn == true) {
