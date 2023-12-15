@@ -47,6 +47,10 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 		worldY = gp.tileSize * 21; //Vị trí bắt đầu
 		speed = 4;
 		direction = "down"; //hướng nhân vật mặc định
+		
+		// PLAYER STATUS
+		maxLife = 6;
+		life = maxLife;
 	}
 	
 	public void getPlayerImage() { // up ảnh nhân vật
