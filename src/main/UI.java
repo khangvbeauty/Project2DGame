@@ -103,8 +103,9 @@ public class UI {
 		} else {
 			g2.setFont(arial_40);
 			g2.setColor(Color.white);
-			g2.drawImage(keyImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
-			g2.drawString("x " + gp.player.hasKey, 74, 65);
+			g2.drawImage(keyImage, gp.tileSize / 2, gp.tileSize * 2, gp.tileSize, gp.tileSize, null);
+			g2.drawString("x " + gp.player.hasKey, 74, 130);
+			
 
 			// TIME
 			playTime += (double) 1 / 60;
@@ -157,17 +158,18 @@ public class UI {
 
 	public void drawPauseScreen() {
 
-		g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
-		String text = "PAUSED";
-		int x = getXforCenteredText(text);
-		int y = gp.screenHeight / 2;
-		
-		// TIME 
-		playTime = (double) 1 / 60;
-		//g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize * 0, 0);
+		if (gp.gameState == gp.pauseState) {
+	        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
+	        String text = "PAUSED";
+	        int x = getXforCenteredText(text);
+	        int y = gp.screenHeight / 2;
 
-		
-		g2.drawString(text, x, y);
+	        // TIME 
+	        playTime = (double) 1 / 60;
+	        g2.drawString("Time: " + dFormat.format(playTime), gp.tileSize * 0, 0);
+
+	        g2.drawString(text, x, y);
+	    }
 
 	}
 
