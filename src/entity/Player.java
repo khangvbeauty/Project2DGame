@@ -20,7 +20,7 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 	
 	public final int screenX;
 	public final int screenY;
-//	public int hasKey = 0;
+	public int hasKey = 0;
 	
 	public Player(GamePanel gp, KeyHandler keyH) {
 		
@@ -139,10 +139,42 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 
 		    if (i >= 0 && i < gp.obj.length) {
 		        String objectName = gp.obj[i].name;
-		        
-		        
+		        switch(objectName) {
+		        case "Key":
+		        	gp.playSE(1);
+		        	hasKey++;
+		        	gp.obj[i] = null;
+				gp.ui.showMessage("You got a key!");
+				break;
+		        case "Door":
+		        	if(hasKey > 0) {
+		        		gp.playSE(3);
+		        		gp.obj[i] = null;
+		        		hasKey--;
+		        		gp.ui.showMessage("You opened the door!");
+		        	}
+		        	else {
+		        		gp.ui.showMessage("You need a key!");
+		        	}
+		        	System.out.println("Key: "+hasKey);
+		        	break;   
+		        case "Boots":
+		        	gp.playSE(2);
+		        	speed += 2;
+		        	gp.obj[i]=null;
+	        		gp.ui.showMessage("Speed up!");
+		        	break;
+		        case "Chest":
+		        	gp.ui.gameFinished = true;
+		        	gp.stopMusic();
+		        	gp.playSE(4);
+		        	break;
+		        	
+		        }
 		    }
 	}
+		        
+		       
 	public void draw(Graphics2D g2) {
 		
 //		g2.setColor(Color.white);
