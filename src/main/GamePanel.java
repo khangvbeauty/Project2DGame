@@ -46,6 +46,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 	
 	//GAME STATE
 	public int gameState;
+	public final int tileState = 0;
 	public final int playState =1;
 	public final int pauseState =2;
 	
@@ -63,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 		aSetter.setObject();
 		playMusic(0);
 		stopMusic();
-		gameState = playState;
+		gameState = tileState;
 		
 	}
 	
@@ -124,21 +125,28 @@ public class GamePanel extends JPanel implements Runnable { //Lớp kế thừa 
 			drawStart = System.nanoTime();
 		}	
 		
-		//TILE
-		tileM.draw(g2);
-		
-		//OBJECT
-		for(int i=0; i<obj.length;i++) {
-			if (obj[i]!= null) {
-				obj[i].draw(g2,  this);
-			}
+		// TITLE SCREEN
+		if (gameState == tileState) {
+			ui.draw(g2);
 		}
-		
-		//PLAYER
-		player.draw(g2);
-		
-		//UI
-		ui.draw(g2);
+		//OTHER
+		else {
+			//TILE
+			tileM.draw(g2);
+			
+			//OBJECT
+			for(int i=0; i<obj.length;i++) {
+				if (obj[i]!= null) {
+					obj[i].draw(g2,  this);
+				}
+			}
+			
+			//PLAYER
+			player.draw(g2);
+			
+			//UI
+			ui.draw(g2);
+		}
 		
 		//DEBUG
 		if(keyH.checkDrawTime == true) {
