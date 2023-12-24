@@ -3,7 +3,7 @@ package entity;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-public class Entity {
+public abstract class Entity {
 	public int worldX, worldY;
 	public int speed;
 	
@@ -20,6 +20,9 @@ public class Entity {
 	// CHARACTER STATUS
 	public int maxLife;
 	public int life;
+	
+    public abstract BufferedImage setup(String imageName);
+
 	
 	
 }

@@ -65,6 +65,7 @@ public class Player extends Entity { //lớp kế thừa của lớp Entity
 		right2 = setup("boy_right_2");
 	}
 	
+	@Override
 	public BufferedImage setup(String imageName) {
 		
 		UtilityTool uTool = new UtilityTool();
